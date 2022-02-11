@@ -19,8 +19,8 @@ class App extends React.Component {
 
 const SwitchButton = (props) => {
 
-    return(
-        <button onClick={props.handleSwitch} >{props.active ? "Turn off" : "Turn on" }</button>
+    return (
+        <button onClick={props.handleSwitch} >{props.active ? "Turn off" : "Turn on"}</button>
     )
 }
 
@@ -56,13 +56,16 @@ class Timer extends React.Component {
     componentWillUnmount() {
         clearInterval(this.intervalIndex)
     }
-
+    
+    showZero(unit){
+        return unit < 10 ? "0" + unit : unit
+    }
 
     render() {
         const { seconds, minutes, hours } = this.state.time;
 
         return (
-            <div>{hours}:{minutes}:{seconds < 10 ? "0" + seconds : seconds}</div>
+            <div>{this.showZero(hours)}:{this.showZero(minutes)}:{this.showZero(seconds)}</div>
         )
     }
 }
